@@ -1,0 +1,75 @@
+<script src="//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
+<div class="content-wrapper">
+    <!-- Page header -->
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="fa fa-th-large position-left"></i> <?php echo $default->getTitle(); ?></h4>
+            </div>										
+            <ul class="breadcrumb">
+                <li><a href="/backoffice"><i class="fa fa-home"></i>მთავარი</a></li>
+                <li class="active"><?php echo $default->getTitle(); ?></li>
+            </ul>					
+        </div>
+    </div>
+    <!-- /page header -->
+    <!-- Content area -->
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-flat">
+                    <div class="panel-body">
+
+                        <form action="" method="post">                    
+                            <input type="hidden" name="op" value="save" />
+                            <div class="tabbable">
+                                <ul class="nav nav-tabs nav-justified">
+                                    <?php foreach ($langs as $item): ?>
+                                        <li <?php if ($item->getDefault() == 1) echo 'class="active"'; ?>><a href="/backoffice/page/1#tab<?= $item->getId(); ?>" data-toggle="tab<?= $item->getId(); ?>"><img src="<?= $item->getIcon(); ?>" />&nbsp;<?= $item->getLangCode(); ?></a></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                                <div class="tab-content">
+                                    <?php foreach ($langs as $item): ?>
+                                        <div class="tab-pane<?php if ($item->getDefault() == 1) echo ' active'; ?>" id="tab<?= $item->getId(); ?>">
+                                            <input name="title<?= $item->getId(); ?>" value="<?php if (isset($page[$item->getId()])) echo $page[$item->getId()]->getTitle(); ?>" class="form-control" /><br />
+                                            <textarea name="page_content<?= $item->getId(); ?>" style="height: 700px"><?php if (isset($page[$item->getId()])) echo $page[$item->getId()]->getContent(); ?></textarea>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>	
+                            <button type="submit" class="btn bg-teal-400 btn-primary"><b><i class="fa fa-save"></i></b> შენახვა</button>	
+                        </form>
+
+                    </div>
+                </div>
+                <script>
+<?php foreach ($langs as $item): ?>
+                        CKEDITOR.replace('page_content<?= $item->getId(); ?>');
+<?php endforeach; ?>
+                </script>
+                <!-- /basic datatable -->
+                <!-- Basic modal -->
+                <div id="modal_default" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">ჯავშნის წაშლა</h4>
+                            </div>
+                            <div class="modal-body">						
+                                <p>ნამდვილად გსურთ ამ ჩანაწერის საბოლოო წაშლა?</p>                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">არა</button>
+                                <button type="button" class="btn btn-primary">დიახ</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /basic modal -->
+            </div>										
+        </div>
+    </div>
+    <!-- /content area -->
+</div>
+<!-- /main content -->

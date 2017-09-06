@@ -23,3 +23,7 @@ data/DoctrineORMModule/cache/
 # Legacy ZF1
 demos/
 extras/documentation
+
+zf3.zip
+public_html
+config/*

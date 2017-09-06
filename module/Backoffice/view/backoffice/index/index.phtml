@@ -1,0 +1,144 @@
+<div class="content-wrapper">
+    <!-- Page header -->
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="fa fa-th-large position-left"></i> ონლაინ ჯავშანების გვერდი</h4>
+            </div>										
+            <ul class="breadcrumb">
+                <li><a><i class="fa fa-home"></i>მთავარი</a></li>
+                <li class="active">ჯავშნები</li>
+            </ul>					
+        </div>
+    </div>
+    <!-- /page header -->
+
+    <!-- Content area -->
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                <!-- basic datatable -->
+                <div class="panel panel-flat">
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Photo of car</th>
+                                <th>User</th>								
+                                <th>Date</th>
+                                <th>Location</th>								
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($this->bookings as $booking): ?>
+                                <tr>
+                                    <td><?php echo $booking["id"]; ?></td>
+                                    <td><?php echo $booking["car"]; ?><br /><img src="/carphotos/<?php echo $booking["car_photo"]; ?>" style="width: 100px;" /></td>
+                                    <td>
+                                        <h6 class="no-margin">
+                                            <?php echo $booking["user_full_name"]; ?>
+                                            <small class="display-block text-muted"><?php echo $booking["user_email"]; ?></small>
+                                            <small class="display-block text-muted">Order Date: <?php echo $booking["add_date"]; ?></small>
+                                        </h6>
+                                    </td>								
+                                    <td><?php echo "Date start: " . $booking["date_start"] . ' <br /> Date end: ' . $booking["date_end"]; ?></td>
+                                    <td><?php echo "Pickup: " . $booking["pickup_loc_name"] . '  <br />Drop off: ' . $booking["dropoff_loc_name"]; ?></td>								
+                                    <td class="text-center">
+                                        <ul class="icons-list">
+                                            <li class="dropdown">
+                                                <a href="javascript:print();" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="datatable_basic.html#"><i class="fa fa-download"></i> Download</a></li>
+                                                    <li><a href="/administrator/bookings/print/id/<?php echo $booking["id"]; ?>" target="_blank"><i class="fa fa-print"></i> Print</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="/administrator/bookings/details/id/<?php echo $booking["id"]; ?>"><i class="fa fa-edit"></i> Edit</a></li>
+                                                    <li><a href="javascript:void();" data-toggle="modal" data-target="#modal_default"><i class="fa fa-trash"></i> Delete</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>							
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /basic datatable -->
+                
+                
+                <!-- Basic modal -->
+                <div id="modal_default" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">ჯავშნის წაშლა</h4>
+                            </div>
+                            <div class="modal-body">						
+                                <p>ნამდვილად გსურთ ამ ჩანაწერის საბოლოო წაშლა?</p>                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">არა</button>
+                                <button type="button" class="btn btn-primary">დიახ</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /basic modal -->
+
+            </div>										
+        </div>
+
+        <script type='text/javascript'>
+            $(document).ready(function () {
+                $(function () {
+                    $('.styled').uniform();
+                });
+                $(function () {
+
+                    // DataTable setup			
+                    $('.datatable').DataTable({
+                        autoWidth: false,
+                        columnDefs: [
+                            {
+                                width: '30px',
+                                targets: 0
+                            },
+                            {
+                                targets: 1
+                            },
+                            {
+                                orderable: false,
+                                width: '100px',
+                                targets: 5
+                            },
+                            {
+                                width: '15%',
+                                targets: [3, 4]
+                            }
+                        ],
+                        order: [[0, 'desc']],
+                        dom: '<"datatable-header"fl><"datatable-scroll-lg"t><"datatable-footer"ip>',
+                        language: {
+                            search: '<span>Search:</span> _INPUT_',
+                            lengthMenu: '<span>Show:</span> _MENU_',
+                            paginate: {'first': 'First', 'last': 'Last', 'next': '&rarr;', 'previous': '&larr;'}
+                        },
+                        lengthMenu: [5, 10, 25, 50, 75, 100],
+                        displayLength: 5,
+                    });
+
+                    $('.dataTables_filter input[type=search]').attr('placeholder', 'Type to filter...');
+
+                    $('.dataTables_length select').select2({
+                        minimumResultsForSearch: Infinity,
+                        width: '60px'
+                    });
+                });
+            });
+        </script>
+    </div>
+    <!-- /content area -->
+</div>
+<!-- /main content -->

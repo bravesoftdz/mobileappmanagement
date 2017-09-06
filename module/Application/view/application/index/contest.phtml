@@ -1,0 +1,10 @@
+Contest
+<table>
+    <?php  //print_r($Contest); exit;
+        echo '<tr><td>ID: ' . $Contest->getId() . '</td></tr>';
+        echo '<tr><td>Contest Name: ' . $Contest->getContestName() . '</td></tr>';
+        echo '<tr><td>StartDate: ' . $Contest->getStartDate() . '</td></tr>';
+        echo '<tr><td>EndDate: ' . $Contest->getEndDate() . '</td></tr>';
+        echo '<tr><td><a href="' . $this->basePath().'/contestors/'.$Contest->getId() . '">Detail</a></td></tr>';
+    ?>
+</table>

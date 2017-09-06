@@ -1,0 +1,78 @@
+<!-- Main sidebar -->
+<div class="sidebar sidebar-main hidden-xs">
+    <div class="sidebar-content">
+
+        <!-- User menu -->
+        <div class="sidebar-user">
+            <div class="category-content">
+                <div class="media">
+                    <a href="/administrator" class="media-left"><img src="assets/images/users/user6.png" class="img-circle img-sm" alt=""></a>
+                    <div class="media-body">
+                        <span class="media-heading text-semibold"><?php echo $this->user["full_name"];?></span>
+                        <div class="text-size-mini text-muted">Administrator</div>
+                    </div>
+
+                    <div class="media-right media-middle">
+                        <ul class="icons-list">
+                            <li>
+                                <a href="/administrator/user/logout"><i class="fa fa-sign-out"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /user menu -->
+
+        <!-- Main navigation -->
+        <div class="sidebar-category sidebar-category-visible">
+            <div class="category-content no-padding">
+                <ul class="navigation navigation-main navigation-accordion">
+
+                    <!-- Main -->					
+                    <li <?php if(isset($this->sidebar["index.index"]) && $this->sidebar["index.index"]==true) echo 'class="active"';?>>
+                        <a href="/administrator/"><i class="fa fa-desktop"></i> <span>Dashboard</span></a>						
+                    </li>																			
+                    <!-- /Main -->	
+
+                    <!-- Content -->
+                    <li class="navigation-header"><span>Content</span> <i class="fa fa-bars" title="Content"></i></li>
+                    <li <?php if(isset($this->sidebar["index.index"]) && $this->sidebar["index.index"]==true) echo 'class="active"';?>>
+                        <a href="/administrator/"><i class="fa fa-th"></i> <span>შეკვეთები</span></a>
+                        <ul>
+                            <li><a href="/administrator/">ახალი მიღებული</a></li>
+                            <li><a href="/administrator/">განხილული</a></li>
+                            <li><a href="/administrator/">შესრულებული</a></li>						
+                        </ul>
+                    </li>
+                    <li <?php if(isset($this->sidebar["users.index"]) && $this->sidebar["users.index"]==true) echo 'class="active"';?>>
+                        <a href="/administrator/users"><i class="fa fa-user"></i> <span>მომხმარებლები</span></a>
+                    </li>
+                    <li <?php if(isset($this->sidebar["suppliers.index"]) && $this->sidebar["suppliers.index"]==true) echo 'class="active"';?>>
+                        <a href="/administrator/suppliers"><i class="fa fa-bug"></i> <span>მომწოდებლები</span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void();"><i class="fa fa-car"></i> <span>ავტო</span></a>
+                        <ul>
+                            <li <?php if((isset($this->sidebar["cars.add"]) && $this->sidebar["cars.add"]==true) || (isset($this->sidebar["cars.index"]) && $this->sidebar["cars.index"]==true)) echo 'class="active"';?>><a href="/administrator/cars">ავტომობილები</a></li>
+                            <li <?php if(isset($this->sidebar["marksnmodels"]) && $this->sidebar["marksnmodels"]==true) echo 'class="active"';?>><a href="/administrator/marksnmodels">მარკები / მოდელები</a></li>
+                            <li <?php if(isset($this->sidebar["categories"]) && $this->sidebar["categories"]==true) echo 'class="active"';?>><a href="/administrator/categories">კატეგორიები</a></li>						
+                        </ul>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa fa-paper-plane"></i> <span>გვერდები</span></a>
+                        <ul>
+                            <li <?php if(isset($this->sidebar["pages.about"]) && $this->sidebar["pages.about"]==true) echo 'class="active"';?>><a href="/backoffice/page/1">ჩვენს შესახებ</a></li>
+                            <li <?php if(isset($this->sidebar["pages.service"]) && $this->sidebar["pages.service"]==true) echo 'class="active"';?>><a href="/backoffice/page/2">მომსახურება</a></li>
+                            <li <?php if(isset($this->sidebar["faq"]) && $this->sidebar["faq"]==true) echo 'class="active"';?>><a href="/administrator/faq">ხ.დ.კ.</a></li>
+                            <li <?php if(isset($this->sidebar["pages.contact"]) && $this->sidebar["pages.contact"]==true) echo 'class="active"';?>><a href="/backoffice/page/3">კოტაქტი</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /main navigation -->
+
+    </div>
+</div>
+<!-- /main sidebar -->

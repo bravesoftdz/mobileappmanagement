@@ -1,0 +1,12 @@
+Contests
+<table>
+    <?php
+    foreach ($Contests as $record) {
+        echo '<tr><td>ID: ' . $record->getId() . '</td></tr>';
+        echo '<tr><td>Contest Name: ' . $record->getContestName() . '</td></tr>';
+        echo '<tr><td>StartDate: ' . $record->getStartDate() . '</td></tr>';
+        echo '<tr><td>EndDate: ' . $record->getEndDate() . '</td></tr>';
+        echo '<tr><td><a href="' . $this->basePath().'/contest/'.$record->getId() . '">Detail</a></td></tr>';
+    }
+    ?>
+</table>

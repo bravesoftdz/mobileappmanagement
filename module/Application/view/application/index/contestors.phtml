@@ -1,0 +1,9 @@
+Contestors
+<table>
+    <?php
+    foreach ($Contestors as $record) {
+        echo '<tr><td>ID: ' . $record->getId() . '</td></tr>';
+        echo '<tr><td>getFullName: ' . $record->getFullName() . '</td></tr>';
+    }
+    ?>
+</table>
